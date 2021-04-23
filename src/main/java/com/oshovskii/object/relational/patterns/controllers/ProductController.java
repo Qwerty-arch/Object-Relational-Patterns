@@ -19,8 +19,8 @@ public class ProductController {
 
     }
 
-    @DeleteMapping("/{id}")
+    @GetMapping("/{id}")
     public Product findProductById(@PathVariable Long id) {
-        return productService.findProductById(id).get();
+        return productService.findProductById(id).orElseThrow(() -> new RuntimeException("Product with id: " + id + " doens't exist"));
     }
 }
